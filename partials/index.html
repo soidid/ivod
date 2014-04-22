@@ -1,101 +1,72 @@
 ﻿<div class="ui inverted menu">
   <a class="item" href="/">
-    <i class="thumbs down outline icon"></i> IVOD 藍畫面
+    IVOD 藍畫面
   </a>
   <div class="right menu">
     <div class="item" ng-show="!user">
-      <a href="">登入</a>
+      <a href=""></a>
     </div>
   </div>
 </div>
 
-<div class="ui segment">
-  <p>本站訴求（王希總指揮）</p>
+<div class="ui segment" id="content_segment">
+  <div class="ui segment">
+  <p>革除 IVOD 藍畫面：點選任何一個藍畫面立委，打電話過去，告訴他們你拒絕立法院會議黑箱、IVOD藍畫面！</p>
+
+  <div class="mini ui button" ng-click="sesameToggle()">
+     芝麻的理想世界
+  </div>
 </div>
 
-<div class="ui celled grid">
-  <div class="row">
 
-    <div class="two wide column" style="">
-      搜尋：
-      <div class="ui input">
-        <input type="text" ng-model="query">
+
+  <div class="leg_collection">
+  <div class="leg_item" 
+       ng-class="{'KMT_item':n.party=='中國國民黨','DPP_item':n.party=='民主進步黨',
+                  'PFP_item':n.party=='親民黨','TSU_item':n.party=='台灣團結聯盟',
+                  'NP_item':n.party=='無','NPU_item':n.party=='無黨團結聯盟'}"
+       ng-repeat="n in legislators | filter:query"
+       ng-click="legClick(n.id)"
+       ng-show="n.name"
+       >
+     <img ng-src="{{n.avatar}}" class="leg_img" ng-show="n.state=='for'||sesame==true">
+     <div class="blue_ivod" ng-show="n.state=='against' && !sesame">
+          <div class="blue_ivod_text">
+          {{n.name}}<br/>
+          藍畫面
+          </div>
+     </div>
+     <div class="name" ng-show="n.state=='for' || sesame">{{n.name}}</div>
+     {{n.party}}
+  </div>
+  </div>
+
+  <div class="ui piled segment">
+  <h2>共同發起團體</h2>
+  <p>台灣人權促進會、民間司法改革基金會、媒體改造學社、婦女新知基金會、反貧困聯盟、公平稅改聯盟、台灣農村陣線</p>
+</div>
+
+  <!-- login alert box -->
+    <div id="alert_box">
+      <div class="ui small segment" id="alert_text">
+          <div class="ui form segment" id="info_form_segment">
+        
+             <p><b>{{data.name}}</b> 是 <b>{{data.eleDistrict}}</b> 的立委，請打電話施加壓力，要求開放IVOD，跟我們一起翻轉/革除藍畫面！</p>
+             
+             <center>
+              02-xxxx-xxxx<br/>
+             <div class="ui teal tiny button" id="cancel_button"
+                  ng-click="hide()">
+                馬上去
+             </div>
+             </center>
+             
+          </div>
+
       </div>
-      <div class="ui mini dropdown">
-        <br/>
-        <div class="text" name="select">選擇篩選條件</div>
-        <input type="hidden" name="select" ng-model="query2">
-        <i class="dropdown icon"></i>
-        <div class="menu">
-          <div class="item" ng-click="query2=''">顯示所有</div>
-          <div class="item" ng-click="query2='中國國民黨'">國民黨立委</div>
-          <div class="item" ng-click="query2='民主進步黨'">民進黨立委</div>
-          <div class="item" ng-click="query2='台灣團結聯盟'">台聯立委</div>
-          <div class="item" ng-click="query2='親民黨'">親民黨立委</div>
-          <div class="item" ng-click="query2='內政'">內政委員會</div>
-          <div class="item" ng-click="query2='外交及國防'">外交國防委員會</div>
-          <div class="item" ng-click="query2='經濟'">經濟委員會</div>
-          <div class="item" ng-click="query2='財政'">財政委員會</div>
-          <div class="item" ng-click="query2='教育及文化'">教育文化委員會</div>
-          <div class="item" ng-click="query2='交通'">交通委員會</div>
-          <div class="item" ng-click="query2='司法及法制'">司法法制委員會</div>
-          <div class="item" ng-click="query2='社會福利及衛生環境'">社福衛環委員會</div>
-        </div>
-      </div>
     </div>
-    <div class="fourteen wide column" style="">
-
-
-      <div class="left floated">根據選區、姓名等選擇您想進一步了解的立委</div>
-<script type="text/javascript">
-  $(function() {
-    var table = $('<table></table>');
-    table.append('<thead><tr><th class="number">Number</th></tr></thead>');
-    var tbody = $('<tbody></tbody>');
-    for(var i = 0; i<100; i++) {
-      tbody.append('<tr><td>' + Math.floor(Math.random() * 100) + '</td></tr>');
-    }
-    table.append(tbody);
-    $('.example.ex-2').append(table);
-
-    $('table').tablesort().data('tablesort');
-
-    $('thead th.number').data('sortBy', function(th, td, sorter) {
-      return parseInt(td.text(), 10);
-    });
-
-  });
-  </script>
-      <table class="ui sortable table segment">
-        <thead>
-          <tr>
-            <th>姓名</th>
-            <th>選區</th>
-            <th>範圍</th>
-            <th>黨籍</th>
-            <th>委員會</th>
-        </tr></thead>
-
-        <tbody>
-          <tr ng-repeat="n in legislators | filter:query | filter:query2">
-            <td><a href="#/legislators/{{n.id}}">
-                <img class="ui big avatar image" ng-src="{{n.avatar}}">{{n.name}}</a></td>
-            <td>{{n.eleDistrict}}</td>
-            <td>{{n.districtDetail}}</td>
-            <td>{{n.party}}</td>
-            <td>{{n.committee}}</td>
-          </tr>
-        </tbody>
-      </table>
-   </div>
-  </div>
-  <div class="one wide column" style="">
-  </div>
 
 </div>
-    </div>
 
-
-
-
+  
 

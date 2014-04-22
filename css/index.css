@@ -190,3 +190,110 @@ p a {
 @media only screen and (max-width : 1000px) {
 
 }
+
+/*******************************
+          Custom
+*******************************/
+#content_segment{
+  margin: 5px;
+}
+.leg_collection{
+  text-align: center;
+ 
+}
+.leg_item{
+
+  cursor: pointer;
+  display: inline-block;
+  width:80px;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 5px;
+  margin-left: 2px;
+  margin-left: 2px; 
+  color:white;
+}
+.KMT_item{
+  background: #3288bd;
+}
+.DPP_item{
+  background: #7fbc41;
+}
+.PFP_item{
+  background: orange;
+}
+.TSU_item{
+  background: #b35806;
+}
+.NP_item{
+  background: gray;
+}
+.NPU_item{
+  background: rgba(194,15,81,0.9);
+}
+.blue_ivod{
+
+  width:80px;
+  height: 100px;
+  background: blue;
+}
+.blue_ivod_text{
+  display: block;
+  padding-top:20px;
+  text-align: center;
+  color: yellow;
+    
+}
+.leg_img{
+  width:80px;
+}
+.modal {
+    /*display:    none;*/
+    position:   fixed;
+    z-index:    200;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                50% 50% 
+                no-repeat;
+}
+#alert_box{
+  display: none;
+  position:   fixed;
+    z-index:    200;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 0, 0, 0, .8 ) 
+                50% 50% 
+                no-repeat;
+}
+#alert_text{
+  width: 300px;
+  height: 210px;
+  
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  margin: auto;
+}
+#info_form_segment{
+  height: 175px;
+}
+#cancel_button{
+  margin-top: 5px;
+}
+
+
+
+
+
+
+
+
