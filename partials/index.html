@@ -1,0 +1,101 @@
+﻿<div class="ui inverted menu">
+  <a class="item" href="/">
+    <i class="thumbs down outline icon"></i> IVOD 藍畫面
+  </a>
+  <div class="right menu">
+    <div class="item" ng-show="!user">
+      <a href="">登入</a>
+    </div>
+  </div>
+</div>
+
+<div class="ui segment">
+  <p>本站訴求（王希總指揮）</p>
+</div>
+
+<div class="ui celled grid">
+  <div class="row">
+
+    <div class="two wide column" style="">
+      搜尋：
+      <div class="ui input">
+        <input type="text" ng-model="query">
+      </div>
+      <div class="ui mini dropdown">
+        <br/>
+        <div class="text" name="select">選擇篩選條件</div>
+        <input type="hidden" name="select" ng-model="query2">
+        <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item" ng-click="query2=''">顯示所有</div>
+          <div class="item" ng-click="query2='中國國民黨'">國民黨立委</div>
+          <div class="item" ng-click="query2='民主進步黨'">民進黨立委</div>
+          <div class="item" ng-click="query2='台灣團結聯盟'">台聯立委</div>
+          <div class="item" ng-click="query2='親民黨'">親民黨立委</div>
+          <div class="item" ng-click="query2='內政'">內政委員會</div>
+          <div class="item" ng-click="query2='外交及國防'">外交國防委員會</div>
+          <div class="item" ng-click="query2='經濟'">經濟委員會</div>
+          <div class="item" ng-click="query2='財政'">財政委員會</div>
+          <div class="item" ng-click="query2='教育及文化'">教育文化委員會</div>
+          <div class="item" ng-click="query2='交通'">交通委員會</div>
+          <div class="item" ng-click="query2='司法及法制'">司法法制委員會</div>
+          <div class="item" ng-click="query2='社會福利及衛生環境'">社福衛環委員會</div>
+        </div>
+      </div>
+    </div>
+    <div class="fourteen wide column" style="">
+
+
+      <div class="left floated">根據選區、姓名等選擇您想進一步了解的立委</div>
+<script type="text/javascript">
+  $(function() {
+    var table = $('<table></table>');
+    table.append('<thead><tr><th class="number">Number</th></tr></thead>');
+    var tbody = $('<tbody></tbody>');
+    for(var i = 0; i<100; i++) {
+      tbody.append('<tr><td>' + Math.floor(Math.random() * 100) + '</td></tr>');
+    }
+    table.append(tbody);
+    $('.example.ex-2').append(table);
+
+    $('table').tablesort().data('tablesort');
+
+    $('thead th.number').data('sortBy', function(th, td, sorter) {
+      return parseInt(td.text(), 10);
+    });
+
+  });
+  </script>
+      <table class="ui sortable table segment">
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>選區</th>
+            <th>範圍</th>
+            <th>黨籍</th>
+            <th>委員會</th>
+        </tr></thead>
+
+        <tbody>
+          <tr ng-repeat="n in legislators | filter:query | filter:query2">
+            <td><a href="#/legislators/{{n.id}}">
+                <img class="ui big avatar image" ng-src="{{n.avatar}}">{{n.name}}</a></td>
+            <td>{{n.eleDistrict}}</td>
+            <td>{{n.districtDetail}}</td>
+            <td>{{n.party}}</td>
+            <td>{{n.committee}}</td>
+          </tr>
+        </tbody>
+      </table>
+   </div>
+  </div>
+  <div class="one wide column" style="">
+  </div>
+
+</div>
+    </div>
+
+
+
+
+
