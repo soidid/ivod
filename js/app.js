@@ -17,7 +17,7 @@ ivodApp.config(['$routeProvider','$locationProvider',
       templateUrl: 'partials/index.html',
       controller: 'indexCtrl'
     });
-    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
     //$locationProvider.html5Mode(false);
     //                .hashPrefix('!');
 
